@@ -117,7 +117,7 @@ matrix:
 deploy:
   provider: releases
   api_key:
-    secure: O8nodqyxLFe1UWuY4MK0ApN69PjoakPfVNihmPOtsqkeVdsRhsm3jEH8JdAzL5tmoGUzyPyGDYws6s4ilGeU981CITsJpfzwhGFvphIOJA2/jg+t+IwJ2t/I2JIe19zQ1LkoOHSQV29uZF0d9Nz2uYHl0S4CQFuEQs6B44thWaFWfabDzv+7tgjsoeaipi2jaUMUt4Cen9KmdXm+sgQBeYA10IIXpZE2H/J0wLjI1ppZCf94Y4MkY5ixXYbi9fKXweGD0pEXnwRXA1IqsLy6nLLHzEElvqnvwhdYhGVCGX4r5wsQCBMRQBRFk9R+HYjNlG2r00t6ULjilHdd3GQUUir9AYRQYHoBMnr5cfE4rwrTV8JuGcoMLkQ+4zdqIkACyS6kc5OPp++TfMGt/z6YQPIWWmt5S3AFTKBwP3g9CRbBrOKFNv86kygln1URtrA8U74BuqHmd9CM/vJz0Yul0jqGCmb0O0Pb/FkFPgJMbdr1UL1IAf3NkPkSe1B/ssrkoZjjGHCQ2hg3GCOcllSL7mPtjt2DT7HvbP2oKR1+1dneObMg0RjfBamOPknZjmVxLGdMQMM5VjAQhlDGGW4I6spAYuIKhfYuzKYV9+gcE/W0poGqZV3n3C32Pwy0ETH0ae4LjJj3h+GxLDpJv+o6u6hp1TgV3/NvHMZul3r52cg=
+    secure: mkpXhVVgQtFCIl9CfrrTO1xch/1HUVoRcP0YomELs8MN11e8Ok7B8Qc+Kjn8mLdFPXJi7A1Eyi/Jrzx5QsG10UzN+HjcEhNFZKH9ZnDdwjzS50zBfNYJ7cqEgDh8NcUku6WeAW1WDBzjtA2yNSL1xDYRqKMOF6udpnKVmUpR3U5CYsZwQHyQ743Q/7Loasxgwd0f+/X9kyBVGNddgv5asf4gGI3EMspS+mJgjyEQA9Z9AuA2LKrGQbvYc9/zy8DKnJUYXqCOg7uJxk5LRGvGtZv+mZEe1wtq127U++BVmQiDmF5lSDEwMvkWrkPq5MnsKj7o1NlOfFl9KlzlSVkU8fJuUuS9ftTsHkXGb2QUQu8Nt9gFSOa0Bsz/aUHzE8FAT2exyUM/6jT1M7W7FB4RZ2CO8Gj03yvojFww2Izxdz5hoI2XsE9gcmVugEavMWMN2EdPVUfiVCXADjYEas9yz6XvqR4bTnbbPUC6rFV5OZzMiSHi/5x9bcDlNag8cn3KYRLkArd2bOEhUuErU/LT40GIP4PHBUtahWFO13Z7m/OS6F32IfMeBtjdwd+PfS6PTGZvEQQXAr3mQIADZe7PR15aqmD47g6BZeWDZdzXR+TRrIo59xLIEnLqugC0Jo0THCed7dPmqPdi+9ADuBDYWRgdduRlGSTQof7RKcGhLwQ=
   file: 
       - Peepcoin-Qt.dmg
       - Peepcoin-Qt.app
@@ -127,6 +127,6 @@ deploy:
       - release/peepcoin-qt-x86_64.exe
   skip_cleanup: true
   on:
-    repo: PXN-Foundation/Peepcoin
+    repo: sibcool/Peepcoin
     tags: true
     branch: QA
