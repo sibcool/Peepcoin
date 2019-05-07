@@ -109,7 +109,7 @@ make libminiupnpc.a
 
 sudo mkdir $MXE_PATH/usr/${MXE_TARGET1}/include/miniupnpc
 sudo cp *.h $MXE_PATH/usr/${MXE_TARGET1}/include/miniupnpc
-sudo cp libminiupnpc.a $MXE_PATH/usr/i686-w64-mingw32.static/lib
+sudo cp libminiupnpc.a $MXE_PATH/usr/${MXE_TARGET1}/lib
 
 # Download, extract, build, install BDB4.8.30
 cd ${TRAVIS_BUILD_DIR}
