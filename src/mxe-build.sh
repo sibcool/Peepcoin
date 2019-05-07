@@ -72,14 +72,15 @@ MXE_LIB_PATH=$MXE_PATH/usr/${MXE_TARGET1}/lib
 #TRAVIS_BUILD_DIR=~/Peepcoin
 
 # Download, extract, build, install boost 1.65.1
-wget https://downloads.sourceforge.net/project/boost/boost/1.63.0/boost_1_63_0.tar.bz2
-tar -xjvf boost_1_63_0.tar.bz2 > /dev/null
-cd boost_1_63_0
+wget https://downloads.sourceforge.net/project/boost/boost/1.64.0/boost_1_64_0.tar.bz2
+tar -xjvf boost_1_64_0.tar.bz2 > /dev/null
+cd boost_1_64_0
 ./bootstrap.sh --without-icu
 echo "using gcc : mxe : $MXE_PATH/usr/bin/${MXE_TARGET1}-g++ : <rc>$MXE_PATH/usr/bin/${MXE_TARGET1}-windres <archiver>$MXE_PATH/usr/bin/${MXE_TARGET1}-ar <ranlib>$MXE_PATH/usr/bin/${MXE_TARGET1}-ranlib ;" > user-config.jam
 export PATH=/usr/lib/mxe/usr/bin:$PATH
-sudo ./b2 toolset=gcc address-model=${ADDRESSMODEL} target-os=windows variant=release threading=multi threadapi=win32 \
-	link=static runtime-link=static --prefix=$MXE_PATH/usr/${MXE_TARGET1} --user-config=user-config.jam \
+sudo ./b2 --build-type=complete --with-chrono --with-filesystem --with-program_options --with-system --with-thread \
+	toolset=gcc address-model=${ADDRESSMODEL} target-os=windows variant=release threading=multi threadapi=win32 \
+	link=static link=static runtime-link=static --prefix=$MXE_PATH/usr/${MXE_TARGET1} --user-config=user-config.jam \
 	--without-mpi --without-python -sNO_BZIP2=1 --layout=tagged install
 cd ..
 
@@ -205,6 +206,8 @@ else
 	cd ${TRAVIS_BUILD_DIR}
 
 	$MXE_PATH/usr/bin/${MXE_TARGET1}-qmake-qt5 \
+		RELEASE=1 \
+		USE_QRCODE=1 \
 		BOOST_LIB_SUFFIX=-mt-s \
 		BOOST_THREAD_LIB_SUFFIX=_win32-mt-s \
 		BOOST_INCLUDE_PATH=$MXE_INCLUDE_PATH/boost \
