@@ -81,7 +81,7 @@ export PATH=/usr/lib/mxe/usr/bin:$PATH
 sudo ./b2 --build-type=complete --with-chrono --with-filesystem --with-program_options --with-system --with-thread \
 	toolset=gcc address-model=${ADDRESSMODEL} target-os=windows variant=release threading=multi threadapi=win32 \
 	link=static link=static runtime-link=static --prefix=$MXE_PATH/usr/${MXE_TARGET1} --user-config=user-config.jam \
-	--without-mpi --without-python -sNO_BZIP2=1 --layout=tagged install
+	--layout=tagged install
 cd ..
 
 # Download, extract, build, install openssl1.0.2
