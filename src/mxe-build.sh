@@ -61,6 +61,8 @@ sudo apt-get --yes install mxe-${MXE_TARGET}-cc
 # sudo apt-get --yes install mxe-${MXE_TARGET}-openssl
 # sudo apt-get --yes install mxe-${MXE_TARGET}-boost
 # sudo apt-get --yes install mxe-${MXE_TARGET}-miniupnpc
+sudo apt-get --yes install mxe-${MXE_TARGET}-libpng
+sudo apt-get --yes install mxe-${MXE_TARGET}-libqrencode
 sudo apt-get --yes install mxe-${MXE_TARGET}-qttools
 #sudo apt-get --yes install mxe-${MXE_TARGET}-db
 
@@ -145,40 +147,40 @@ sudo sed -i 's/pid_t/u_int32_t/g' $MXE_INCLUDE_PATH/db.h
 sudo sed -i 's/pid_t/u_int32_t/g' $MXE_INCLUDE_PATH/db_cxx.h
 
 # Download, extract, build, LibPNG 1.6.16 (required for QREncode)
-cd ${TRAVIS_BUILD_DIR}
-wget -N 'http://download.sourceforge.net/libpng/libpng-1.6.16.tar.gz'
-tar xzf libpng-1.6.16.tar.gz > /dev/null
-cd libpng-1.6.16
-make clean
-CC=$MXE_PATH/usr/bin/${MXE_TARGET1}-gcc \
-CXX=$MXE_PATH/usr/bin/${MXE_TARGET1}-g++ \
-./configure \
-    --disable-shared \
-    --host=${HOST} \
-    --prefix=$MXE_PATH/usr/${MXE_TARGET1}
+#cd ${TRAVIS_BUILD_DIR}
+#wget -N 'http://download.sourceforge.net/libpng/libpng-1.6.16.tar.gz'
+#tar xzf libpng-1.6.16.tar.gz > /dev/null
+#cd libpng-1.6.16
+#make clean
+#CC=$MXE_PATH/usr/bin/${MXE_TARGET1}-gcc \
+#CXX=$MXE_PATH/usr/bin/${MXE_TARGET1}-g++ \
+#./configure \
+#    --disable-shared \
+#    --host=${HOST} \
+#    --prefix=$MXE_PATH/usr/${MXE_TARGET1}
 
-make > /dev/null 2>&1
-cp .libs/libpng16.a .libs/libpng.a
+#make > /dev/null 2>&1
+#cp .libs/libpng16.a .libs/libpng.a
 
 # Download, extract, build QREncode (not finished)
-cd ${TRAVIS_BUILD_DIR}
-wget -N 'http://fukuchi.org/works/qrencode/qrencode-4.0.2.tar.gz'
-tar xzf qrencode-4.0.2.tar.gz > /dev/null
-cd qrencode-4.0.2
-make clean
-LIBS="../libpng-1.6.16/.libs/libpng.a ../../mingw32/${MXE_TARGET1}/lib/libz.a" \
-png_CFLAGS="-I../libpng-1.6.16" \
-png_LIBS="-L../libpng-1.6.16/.libs" \
-CC=$MXE_PATH/usr/bin/${MXE_TARGET1}-gcc \
-CXX=$MXE_PATH/usr/bin/${MXE_TARGET1}-g++ \
-./configure \
-    --enable-static \
-    --disable-shared \
-    --without-tools \
-    --host=${HOST} \
-    --prefix=$MXE_PATH/usr/${MXE_TARGET1}
-make > /dev/null 2>&1
-sudo make install > /dev/null 2>&1
+#cd ${TRAVIS_BUILD_DIR}
+#wget -N 'http://fukuchi.org/works/qrencode/qrencode-4.0.2.tar.gz'
+#tar xzf qrencode-4.0.2.tar.gz > /dev/null
+#cd qrencode-4.0.2
+#make clean
+#LIBS="../libpng-1.6.16/.libs/libpng.a ../../mingw32/${MXE_TARGET1}/lib/libz.a" \
+#png_CFLAGS="-I../libpng-1.6.16" \
+#png_LIBS="-L../libpng-1.6.16/.libs" \
+#CC=$MXE_PATH/usr/bin/${MXE_TARGET1}-gcc \
+#CXX=$MXE_PATH/usr/bin/${MXE_TARGET1}-g++ \
+#./configure \
+#    --enable-static \
+#    --disable-shared \
+#    --without-tools \
+#    --host=${HOST} \
+#    --prefix=$MXE_PATH/usr/${MXE_TARGET1}
+#make > /dev/null 2>&1
+#sudo make install > /dev/null 2>&1
 
 # Parallel build, based on our number of CPUs available.
 NCPU=`cat /proc/cpuinfo | grep -c ^processor`
